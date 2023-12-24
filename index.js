@@ -61,13 +61,13 @@ async function run() {
         // Delete Task
         app.delete("/deleteTask/:id", async (req, res) => {
             const id = req.params.id;
-            console.log("delete", id);
             const query = {
               _id: new ObjectId(id),
             };
             const result = await taskCollection.deleteOne(query);
             console.log(result);
             res.send(result);
+            console.log("res send");
           });  
 
 
@@ -134,5 +134,5 @@ app.get('/', (req, res) => {
   })
 
 app.listen(port, () => {
-    console.log(`Blood Donation ${port}`);
+    console.log(`Task Nest ${port}`);
   });
