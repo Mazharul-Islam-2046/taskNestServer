@@ -1,7 +1,7 @@
 const express = require("express");
 const app = express();
 const cors = require("cors");
-const { MongoClient, ServerApiVersion } = require('mongodb');
+const { MongoClient, ServerApiVersion, ObjectId } = require('mongodb');
 require("dotenv").config();
 
 const port = process.env.PORT || 5000;
@@ -74,7 +74,7 @@ async function run() {
 
 
         //   Upadate Tasks Status
-        app.patch('/tasks/status/:id', async (req, res) => {
+        app.patch('/tasks/:id', async (req, res) => {
             const id = req.params.id;
             const status = req.body.status;
             const filter = { _id: new ObjectId(id) };
@@ -85,7 +85,7 @@ async function run() {
             }
             const result = await taskCollection.updateOne(filter, updatedDoc);
             res.send(result);
-          })
+          }) 
 
 
 
